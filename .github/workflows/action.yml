@@ -16,6 +16,6 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
           #repository: navanchauhan/curie-cli
           #tag_with_ref: true
-          tag: latest
-          image: navanchauhan/curie-cli
+          tags: latest
+          #image: navanchauhan/curie-cli
           registry: docker.io
