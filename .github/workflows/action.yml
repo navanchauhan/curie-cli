@@ -1,4 +1,4 @@
-name: PLIP Build
+name: Curie-CLI Build
 
 on:
   push
