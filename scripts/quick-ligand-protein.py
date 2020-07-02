@@ -69,14 +69,14 @@ def zoomTo(name):
     cmd.zoom(name)
 def generatePictures():
     generatePNG('output-front')
-    #flipHorizontal()
-    #generatePNG('output-back')
-    #zoomTo(m2)
-    #generatePNG('closeup-back')
-    #orientEtZoom()
-    #flipHorizontal()
-    #zoomTo(m2)
-    #generatePNG('closeup-front')
+    flipHorizontal()
+    generatePNG('output-back')
+    zoomTo(m2)
+    generatePNG('closeup-back')
+    orientEtZoom()
+    flipHorizontal()
+    zoomTo(m2)
+    generatePNG('closeup-front')
     
 
 print("Initialising PyMol")
