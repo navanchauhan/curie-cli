@@ -10,7 +10,7 @@ proteinPath=""
 ligandPath=""
 pdfPath=""
 smile=""
-name=""
+name="report"
 config=""
 
 usage()
