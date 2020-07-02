@@ -14,11 +14,11 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          repository: navanchauhan/curei-cli
+          tag_with_ref: true
+          tag_with_sha: true
           #repository: navanchauhan/curie-cli
           #tag_with_ref: true
           #tags: latest
           #image: navanchauhan/curie-cli
           #registry: docker.io
-	  repository: navanchauhan/curie-cli
-	  tag_with_ref: true
-	  tag_with_sha: true
