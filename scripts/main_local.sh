@@ -149,4 +149,4 @@ if [[ $interactions == "true" ]]; then
     pandoc -V geometry:margin=1in report.md --pdf-engine=xelatex -o $name.pdf
 fi
 
-echo "$proteinPath and $ligandPath and $docking and $interactions and $visualisations"
+#echo "$proteinPath and $ligandPath and $docking and $interactions and $visualisations"
