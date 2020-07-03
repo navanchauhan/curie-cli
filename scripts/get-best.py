@@ -1,3 +1,4 @@
+#1/usr/bin/python3
 import argparse
 import pymol2
 import re
