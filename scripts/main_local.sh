@@ -139,13 +139,13 @@ fi
 
 if [[ $visualisations == "true" ]]; then
     file=$(echo "$ligandPath" | cut -f 1 -d '.')
-    ./quick-ligand-protein.py -p $proteinPath -l "$(echo $file)_out.pdbqt"
+    quick-ligand-protein.py -p $proteinPath -l "$(echo $file)_out.pdbqt"
 fi
 
 if [[ $interactions == "true" ]]; then
-    ./get-best.py -p $proteinPath -l "$(echo $file)_out.pdbqt"
-    ./plipcmd.py -f best.pdb -qpxy
-    ./makeReport.py --input . > report.md
+    get-best.py -p $proteinPath -l "$(echo $file)_out.pdbqt"
+    plip -f best.pdb -qpxy
+    makeReport.py --input . > report.md
     pandoc -V geometry:margin=1in report.md --pdf-engine=xelatex -o $name.pdf
 fi
 
