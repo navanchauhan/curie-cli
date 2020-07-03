@@ -27,9 +27,9 @@ RUN chmod +x plip/plipcmd.py
 ENV PYTHONPATH $PYTHONPATH:/src
 
 # execute tests
-#WORKDIR /src/plip/test
-#RUN chmod +x run_all_tests.sh
-#RUN ./run_all_tests.sh
+WORKDIR /src/plip/test
+RUN chmod +x run_all_tests.sh
+RUN ./run_all_tests.sh
 #WORKDIR /
 
 # scripts
