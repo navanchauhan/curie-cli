@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 """
 Protein-Ligand Interaction Profiler - Analyze and visualize protein-ligand interactions in PDB files.
 plipcmd.py - Main script for PLIP command line execution.
