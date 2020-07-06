@@ -44,7 +44,7 @@ for x in doc.report.bindingsite:
 
 
 name = doc.report.pdbid.cdata
-print(("# " + (name.replace("_"," ")).replace("PROTEIN","")), end="\n\n")
+#print(("# " + (name.replace("_"," ")).replace("PROTEIN","")), end="\n\n")
 
 print("## Visualisation", end="\n\n")    
 print(f'![]({image})', end="\n\n")

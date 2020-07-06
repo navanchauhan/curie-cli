@@ -145,7 +145,8 @@ fi
 if [[ $interactions == "true" ]]; then
     python3 /src/scripts/get-best.py -p $proteinPath -l "$(echo $file)_out.pdbqt"
     python3 /src/plip/plipcmd.py -f best.pdb -qpxy
-    python3 /src/scripts/makeReport.py --input . > report.md
+    python3 /src/scripts/get_dock_score.py -l "$(echo $file)_out.pdbqt" -p $proteinPath > report.md
+    python3 /src/scripts/makeReport.py --input . >> report.md
     pandoc -V geometry:margin=1in report.md --pdf-engine=xelatex -o $name.pdf
 fi
 
