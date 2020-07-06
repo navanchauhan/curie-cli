@@ -2,7 +2,7 @@
 
 import argparse
 
-parser = argparse.ArgumentParser(description=desc_text)
+parser = argparse.ArgumentParser(description="Get Docking Score")
 parser.add_argument("-p","--protein",help="Path to protein file")
 parser.add_argument("-l","--ligand",help="Path to ligand_out file")
 
