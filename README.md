@@ -4,7 +4,15 @@
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/navanchauhan/curie-cli/latest?style=social)
 
 
-### Attribution
+## Attribution
 
-#### PLIP ( Protein-Ligand Interaction Profiler )
+### PLIP ( Protein-Ligand Interaction Profiler )
+
+<img src="pliplogo.svg">
+
+PLIP is used for generating visualisations and for profiling interactions. PLIP is powered by ![PharmAI](https://www.pharm.ai)
+
+### PyMOL
+
+### AutoDock-Vina
 
