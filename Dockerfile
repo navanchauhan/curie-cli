@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
 
 # copy PLIP source code
 WORKDIR /src
-ADD plip/ plip/
+COPY plip/ plip/
 RUN chmod +x plip/plipcmd.py
 ENV PYTHONPATH $PYTHONPATH:/src
 
@@ -35,7 +35,7 @@ RUN ./run_all_tests.sh
 
 # scripts
 WORKDIR /src
-ADD scripts/ scripts/
+COPY scripts/ scripts/
 RUN chmod +x /src/scripts/main.sh
 RUN python3 -m pip install untangle tabulate
 
