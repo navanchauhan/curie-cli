@@ -20,29 +20,39 @@ class CommandLineTest(unittest.TestCase):
 
     def test_empty_input_file(self):
         """Input file is empty."""
-        exitcode = subprocess.call(f'{sys.executable} ../plipcmd.py -f ./special/empty.pdb -o {self.tmp_dir.name}',
-                                   shell=True)
+        exitcode = subprocess.call(
+            f"{sys.executable} ../plipcmd.py -f ./special/empty.pdb -o {self.tmp_dir.name}",
+            shell=True,
+        )
         self.assertEqual(exitcode, 1)
 
     def test_invalid_pdb_id(self):
         """A PDB ID with no valid PDB record is provided."""
-        exitcode = subprocess.call(f'{sys.executable} ../plipcmd.py -i xx1x -o {self.tmp_dir.name}', shell=True)
+        exitcode = subprocess.call(
+            f"{sys.executable} ../plipcmd.py -i xx1x -o {self.tmp_dir.name}", shell=True
+        )
         self.assertEqual(exitcode, 1)
 
     def test_invalid_input_file(self):
         """A file is provided which is not a PDB file."""
-        exitcode = subprocess.call(f'{sys.executable} ../plipcmd.py -f ./special/non-pdb.pdb -o {self.tmp_dir.name}',
-                                   shell=True)
+        exitcode = subprocess.call(
+            f"{sys.executable} ../plipcmd.py -f ./special/non-pdb.pdb -o {self.tmp_dir.name}",
+            shell=True,
+        )
         self.assertEqual(exitcode, 1)
 
     def test_pdb_format_not_available(self):
         """A valid PDB ID is provided, but there is no entry in PDB format from wwPDB"""
-        exitcode = subprocess.call(f'{sys.executable} ../plipcmd.py -i 4v59 -o {self.tmp_dir.name}', shell=True)
+        exitcode = subprocess.call(
+            f"{sys.executable} ../plipcmd.py -i 4v59 -o {self.tmp_dir.name}", shell=True
+        )
         self.assertEqual(exitcode, 1)
 
     def test_valid_pdb(self):
         """A PDB ID with no valid PDB record is provided."""
-        exitcode = subprocess.call(f'{sys.executable} ../plipcmd.py -x -f ./pdb/1eve.pdb -o {self.tmp_dir.name}',
-                                   shell=True)
+        exitcode = subprocess.call(
+            f"{sys.executable} ../plipcmd.py -x -f ./pdb/1eve.pdb -o {self.tmp_dir.name}",
+            shell=True,
+        )
         self.assertEqual(len(os.listdir(self.tmp_dir.name)), 2)
         self.assertEqual(exitcode, 0)

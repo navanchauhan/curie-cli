@@ -8,14 +8,16 @@ def get_logger():
     """
     frame = inspect.stack()[1]
     module_name = inspect.getmodule(frame[0]).__name__
-    if module_name != '__main__':
+    if module_name != "__main__":
         logger = logging.getLogger(module_name)
         if not logger.parent.handlers:
             ch = logging.StreamHandler()
-            formatter = logging.Formatter('%(asctime)s [%(levelname)s] [%(filename)s:%(lineno)d] %(name)s: %(message)s')
+            formatter = logging.Formatter(
+                "%(asctime)s [%(levelname)s] [%(filename)s:%(lineno)d] %(name)s: %(message)s"
+            )
             ch.setFormatter(formatter)
             logger.parent.addHandler(ch)
     else:
-        logger = logging.getLogger('plip')
+        logger = logging.getLogger("plip")
 
     return logger

@@ -21,13 +21,17 @@ class TestLigandSupport(unittest.TestCase):
     def test_dna_rna(self):
         """Test if DNA and RNA is correctly processed as ligands"""
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1tf6.pdb')
+        tmpmol.load_pdb("./pdb/1tf6.pdb")
         # DNA ligand four times consisting of 31 parts (composite)
-        self.assertEqual([len(ligand.members) for ligand in tmpmol.ligands].count(31), 4)
-        for ligset in [set((x[0] for x in ligand.members)) for ligand in tmpmol.ligands]:
+        self.assertEqual(
+            [len(ligand.members) for ligand in tmpmol.ligands].count(31), 4
+        )
+        for ligset in [
+            set((x[0] for x in ligand.members)) for ligand in tmpmol.ligands
+        ]:
             if len(ligset) == 4:
                 # DNA only contains four bases
-                self.assertEqual(ligset, {'DG', 'DC', 'DA', 'DT'})
+                self.assertEqual(ligset, {"DG", "DC", "DA", "DT"})
 
 
 class TestMapping(unittest.TestCase):
@@ -36,34 +40,34 @@ class TestMapping(unittest.TestCase):
     def test_ids(self):
         """Test if the atom IDs are correctly mapped from internal to original PDB."""
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1vsn.pdb')
-        bsid = 'NFT:A:283'
+        tmpmol.load_pdb("./pdb/1vsn.pdb")
+        bsid = "NFT:A:283"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         for contact in s.hydrophobic_contacts:
-            if contact.restype == 'ALA' and contact.resnr == 133:
+            if contact.restype == "ALA" and contact.resnr == 133:
                 self.assertEqual(contact.ligatom_orig_idx, 1636)
                 self.assertEqual(contact.bsatom_orig_idx, 994)
-            if contact.restype == 'ASP' and contact.resnr == 61:
+            if contact.restype == "ASP" and contact.resnr == 61:
                 self.assertEqual(contact.ligatom_orig_idx, 1639)
                 self.assertEqual(contact.bsatom_orig_idx, 448)
         for contact in s.hbonds_ldon + s.hbonds_pdon:
-            if contact.restype == 'GLN' and contact.resnr == 19:
+            if contact.restype == "GLN" and contact.resnr == 19:
                 self.assertEqual(contact.a_orig_idx, 1649)
                 self.assertEqual(contact.d_orig_idx, 153)
-            if contact.restype == 'CYS' and contact.resnr == 25:
+            if contact.restype == "CYS" and contact.resnr == 25:
                 self.assertEqual(contact.a_orig_idx, 1649)
                 self.assertEqual(contact.d_orig_idx, 183)
-            if contact.restype == 'ASN' and contact.resnr == 158:
+            if contact.restype == "ASN" and contact.resnr == 158:
                 self.assertEqual(contact.d_orig_idx, 1629)
                 self.assertEqual(contact.a_orig_idx, 1199)
         for contact in s.halogen_bonds:
-            if contact.restype == 'TYR' and contact.resnr == 67:
+            if contact.restype == "TYR" and contact.resnr == 67:
                 self.assertEqual(contact.don.x_orig_idx, 1627)
                 self.assertEqual(contact.acc.o_orig_idx, 485)
-            if contact.restype == 'LEU' and contact.resnr == 157:
+            if contact.restype == "LEU" and contact.resnr == 157:
                 self.assertEqual(contact.don.x_orig_idx, 1628)
                 self.assertEqual(contact.acc.o_orig_idx, 1191)
 
@@ -72,7 +76,7 @@ class GeometryTest(unittest.TestCase):
     """Tests for geometrical calculations in PLIP"""
 
     def vector_magnitude(self, v):
-        return numpy.sqrt(sum(x**2 for x in v))
+        return numpy.sqrt(sum(x ** 2 for x in v))
 
     # noinspection PyUnusedLocal
     def setUp(self):
@@ -132,4 +136,7 @@ class GeometryTest(unittest.TestCase):
     def test_cluster_doubles(self):
         """Tests for mathematics.cluster_doubles"""
         # Are the results correct?
-        self.assertEqual(set(cluster_doubles([(1, 3), (4, 1), (5, 6), (7, 5)])), {(1, 3, 4), (5, 6, 7)})
+        self.assertEqual(
+            set(cluster_doubles([(1, 3), (4, 1), (5, 6), (7, 5)])),
+            {(1, 3, 4), (5, 6, 7)},
+        )

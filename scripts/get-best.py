@@ -11,13 +11,14 @@ version = "1.0"
 desc_text = "PyMol Quick Visualtion " + version
 
 parser = argparse.ArgumentParser(description=desc_text)
-parser.add_argument("-p","--protein",help="Path to protein file")
-parser.add_argument("-l","--ligand",help="Path to ligand_out file")
+parser.add_argument("-p", "--protein", help="Path to protein file")
+parser.add_argument("-l", "--ligand", help="Path to ligand_out file")
 
 args = parser.parse_args()
 
+
 def li(s):
-    #log.info(s)
+    # log.info(s)
     None
 
 
@@ -35,10 +36,10 @@ ligand = args.ligand
 session = pymol2.PyMOL()
 session.start()
 cmd = session.cmd
-cmd.load(protein,'pro')
-cmd.load(ligand,'lig')
-cmd.split_states('lig')
+cmd.load(protein, "pro")
+cmd.load(ligand, "lig")
+cmd.split_states("lig")
 
-#fname = re.sub(r'^.*?/', '', protein.replace(".pdbqt","")) + "-" + re.sub(r'^.*?/', '', ligand.replace(".pdbqt","")) + ".pdb" 
+# fname = re.sub(r'^.*?/', '', protein.replace(".pdbqt","")) + "-" + re.sub(r'^.*?/', '', ligand.replace(".pdbqt","")) + ".pdb"
 
-cmd.save("best.pdb","pro lig_0001")
+cmd.save("best.pdb", "pro lig_0001")

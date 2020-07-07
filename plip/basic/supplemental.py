@@ -18,22 +18,24 @@ from plip.basic import config, logger
 logger = logger.get_logger()
 
 # Windows and MacOS
-if os.name != 'nt' and platform.system() != 'Darwin':  # Resource module not available for Windows
+if (
+    os.name != "nt" and platform.system() != "Darwin"
+):  # Resource module not available for Windows
     import resource
 
 # Settings
-np.seterr(all='ignore')  # No runtime warnings
+np.seterr(all="ignore")  # No runtime warnings
 
 
 def tmpfile(prefix, direc):
     """Returns the path to a newly created temporary file."""
-    return tempfile.mktemp(prefix=prefix, suffix='.pdb', dir=direc)
+    return tempfile.mktemp(prefix=prefix, suffix=".pdb", dir=direc)
 
 
 def is_lig(hetid):
     """Checks if a PDB compound can be excluded as a small molecule ligand"""
     h = hetid.upper()
-    return not (h == 'HOH' or h in config.UNSUPPORTED)
+    return not (h == "HOH" or h in config.UNSUPPORTED)
 
 
 def extract_pdbid(string):
@@ -48,19 +50,25 @@ def extract_pdbid(string):
 
 def whichrestype(atom):
     """Returns the residue name of an Pybel or OpenBabel atom."""
-    atom = atom if not isinstance(atom, Atom) else atom.OBAtom  # Convert to OpenBabel Atom
+    atom = (
+        atom if not isinstance(atom, Atom) else atom.OBAtom
+    )  # Convert to OpenBabel Atom
     return atom.GetResidue().GetName() if atom.GetResidue() is not None else None
 
 
 def whichresnumber(atom):
     """Returns the residue number of an Pybel or OpenBabel atom (numbering as in original PDB file)."""
-    atom = atom if not isinstance(atom, Atom) else atom.OBAtom  # Convert to OpenBabel Atom
+    atom = (
+        atom if not isinstance(atom, Atom) else atom.OBAtom
+    )  # Convert to OpenBabel Atom
     return atom.GetResidue().GetNum() if atom.GetResidue() is not None else None
 
 
 def whichchain(atom):
     """Returns the residue number of an PyBel or OpenBabel atom."""
-    atom = atom if not isinstance(atom, Atom) else atom.OBAtom  # Convert to OpenBabel Atom
+    atom = (
+        atom if not isinstance(atom, Atom) else atom.OBAtom
+    )  # Convert to OpenBabel Atom
     return atom.GetResidue().GetChain() if atom.GetResidue() is not None else None
 
 
@@ -82,7 +90,11 @@ def vector(p1, p2):
     :param p2: coordinates of point p2
     :returns : numpy array with vector coordinates
     """
-    return None if len(p1) != len(p2) else np.array([p2[i] - p1[i] for i in range(len(p1))])
+    return (
+        None
+        if len(p1) != len(p2)
+        else np.array([p2[i] - p1[i] for i in range(len(p1))])
+    )
 
 
 def vecangle(v1, v2, deg=True):
@@ -97,7 +109,7 @@ def vecangle(v1, v2, deg=True):
     dm = np.dot(v1, v2)
     cm = np.linalg.norm(v1) * np.linalg.norm(v2)
     angle = np.arccos(dm / cm)  # Round here to prevent floating point errors
-    return np.degrees([angle, ])[0] if deg else angle
+    return np.degrees([angle,])[0] if deg else angle
 
 
 def normalize_vector(v):
@@ -114,7 +126,12 @@ def centroid(coo):
     :param coo: Array of coordinate arrays
     :returns : centroid coordinates as list
     """
-    return list(map(np.mean, (([c[0] for c in coo]), ([c[1] for c in coo]), ([c[2] for c in coo]))))
+    return list(
+        map(
+            np.mean,
+            (([c[0] for c in coo]), ([c[1] for c in coo]), ([c[2] for c in coo])),
+        )
+    )
 
 
 def projection(pnormal1, ppoint, tpoint):
@@ -150,11 +167,15 @@ def cluster_doubles(double_list):
         if a in location and b in location:
             if location[a] != location[b]:
                 if location[a] < location[b]:
-                    clusters[location[a]] = clusters[location[a]].union(clusters[location[b]])  # Merge clusters
-                    clusters = clusters[:location[b]] + clusters[location[b] + 1:]
+                    clusters[location[a]] = clusters[location[a]].union(
+                        clusters[location[b]]
+                    )  # Merge clusters
+                    clusters = clusters[: location[b]] + clusters[location[b] + 1 :]
                 else:
-                    clusters[location[b]] = clusters[location[b]].union(clusters[location[a]])  # Merge clusters
-                    clusters = clusters[:location[a]] + clusters[location[a] + 1:]
+                    clusters[location[b]] = clusters[location[b]].union(
+                        clusters[location[a]]
+                    )  # Merge clusters
+                    clusters = clusters[: location[a]] + clusters[location[a] + 1 :]
                 # Rebuild index of locations for each element as they have changed now
                 location = {}
                 for i, cluster in enumerate(clusters):
@@ -181,9 +202,10 @@ def cluster_doubles(double_list):
 # File operations
 #################
 
+
 def tilde_expansion(folder_path):
     """Tilde expansion, i.e. converts '~' in paths into <value of $HOME>."""
-    return os.path.expanduser(folder_path) if '~' in folder_path else folder_path
+    return os.path.expanduser(folder_path) if "~" in folder_path else folder_path
 
 
 def folder_exists(folder_path):
@@ -194,14 +216,21 @@ def folder_exists(folder_path):
 def create_folder_if_not_exists(folder_path):
     """Creates a folder if it does not exists."""
     folder_path = tilde_expansion(folder_path)
-    folder_path = "".join([folder_path, '/']) if not folder_path[-1] == '/' else folder_path
+    folder_path = (
+        "".join([folder_path, "/"]) if not folder_path[-1] == "/" else folder_path
+    )
     direc = os.path.dirname(folder_path)
     if not folder_exists(direc):
         os.makedirs(direc)
 
 
 def cmd_exists(c):
-    return subprocess.call("type " + c, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE) == 0
+    return (
+        subprocess.call(
+            "type " + c, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
+        == 0
+    )
 
 
 ################
@@ -212,20 +241,22 @@ def cmd_exists(c):
 def initialize_pymol(options):
     """Initializes PyMOL"""
     import pymol
+
     # Pass standard arguments of function to prevent PyMOL from printing out PDB headers (workaround)
-    pymol.finish_launching(args=['pymol', options, '-K'])
+    pymol.finish_launching(args=["pymol", options, "-K"])
     pymol.cmd.reinitialize()
 
 
-def start_pymol(quiet=False, options='-p', run=False):
+def start_pymol(quiet=False, options="-p", run=False):
     """Starts up PyMOL and sets general options. Quiet mode suppresses all PyMOL output.
     Command line options can be passed as the second argument."""
     import pymol
-    pymol.pymol_argv = ['pymol', '%s' % options] + sys.argv[1:]
+
+    pymol.pymol_argv = ["pymol", "%s" % options] + sys.argv[1:]
     if run:
         initialize_pymol(options)
     if quiet:
-        pymol.cmd.feedback('disable', 'all', 'everything')
+        pymol.cmd.feedback("disable", "all", "everything")
 
 
 def nucleotide_linkage(residues):
@@ -235,7 +266,7 @@ def nucleotide_linkage(residues):
     #######################################
     # Basic support for RNA/DNA as ligand #
     #######################################
-    nucleotides = ['A', 'C', 'T', 'G', 'U', 'DA', 'DC', 'DT', 'DG', 'DU']
+    nucleotides = ["A", "C", "T", "G", "U", "DA", "DC", "DT", "DG", "DU"]
     dna_rna = {}  # Dictionary of DNA/RNA residues by chain
     covlinkage = namedtuple("covlinkage", "id1 chain1 pos1 conf1 id2 chain2 pos2 conf2")
     # Create missing covlinkage entries for DNA/RNA
@@ -243,7 +274,9 @@ def nucleotide_linkage(residues):
         resname, chain, pos = ligand
         if resname in nucleotides:
             if chain not in dna_rna:
-                dna_rna[chain] = [(resname, pos), ]
+                dna_rna[chain] = [
+                    (resname, pos),
+                ]
             else:
                 dna_rna[chain].append((resname, pos))
     for chain in dna_rna:
@@ -253,8 +286,16 @@ def nucleotide_linkage(residues):
                 name, pos = nucleotide
                 nextnucleotide = nuc_list[i + 1]
                 nextname, nextpos = nextnucleotide
-                newlink = covlinkage(id1=name, chain1=chain, pos1=pos, conf1='',
-                                     id2=nextname, chain2=chain, pos2=nextpos, conf2='')
+                newlink = covlinkage(
+                    id1=name,
+                    chain1=chain,
+                    pos1=pos,
+                    conf1="",
+                    id2=nextname,
+                    chain2=chain,
+                    pos2=nextpos,
+                    conf2="",
+                )
                 nuc_covalent.append(newlink)
 
     return nuc_covalent
@@ -273,7 +314,12 @@ def ring_is_planar(ring, r_atoms):
     # Given all normals of ring atoms and their neighbors, the angle between any has to be 5.0 deg or less
     for n1, n2 in itertools.product(normals, repeat=2):
         arom_angle = vecangle(n1, n2)
-        if all([arom_angle > config.AROMATIC_PLANARITY, arom_angle < 180.0 - config.AROMATIC_PLANARITY]):
+        if all(
+            [
+                arom_angle > config.AROMATIC_PLANARITY,
+                arom_angle < 180.0 - config.AROMATIC_PLANARITY,
+            ]
+        ):
             return False
     return True
 
@@ -282,21 +328,21 @@ def classify_by_name(names):
     """Classify a (composite) ligand by the HETID(s)"""
     if len(names) > 3:  # Polymer
         if len(set(config.RNA).intersection(set(names))) != 0:
-            ligtype = 'RNA'
+            ligtype = "RNA"
         elif len(set(config.DNA).intersection(set(names))) != 0:
-            ligtype = 'DNA'
+            ligtype = "DNA"
         else:
             ligtype = "POLYMER"
     else:
-        ligtype = 'SMALLMOLECULE'
+        ligtype = "SMALLMOLECULE"
 
     for name in names:
         if name in config.METAL_IONS:
             if len(names) == 1:
-                ligtype = 'ION'
+                ligtype = "ION"
             else:
                 if "ION" not in ligtype:
-                    ligtype += '+ION'
+                    ligtype += "+ION"
     return ligtype
 
 
@@ -323,7 +369,7 @@ def get_isomorphisms(reference, lig):
         isomorphs = pybel.ob.vpairUIntUInt()
         mappr.MapFirst(lig.OBMol, isomorphs)
         isomorphs = [isomorphs]
-    logger.debug(f'number of isomorphisms: {len(isomorphs)}')
+    logger.debug(f"number of isomorphisms: {len(isomorphs)}")
     # @todo Check which isomorphism to take
     return isomorphs
 
@@ -340,15 +386,17 @@ def canonicalize(lig, preserve_bond_order=False):
                 bond.SetBondOrder(1)
     lig.DeleteData(pybel.ob.StereoData)
     lig = pybel.Molecule(lig)
-    testcan = lig.write(format='can')
+    testcan = lig.write(format="can")
     try:
-        pybel.readstring('can', testcan)
-        reference = pybel.readstring('can', testcan)
+        pybel.readstring("can", testcan)
+        reference = pybel.readstring("can", testcan)
     except IOError:
-        testcan, reference = '', ''
-    if testcan != '':
+        testcan, reference = "", ""
+    if testcan != "":
         reference.removeh()
-        isomorphs = get_isomorphisms(reference, lig)  # isomorphs now holds all isomorphisms within the molecule
+        isomorphs = get_isomorphisms(
+            reference, lig
+        )  # isomorphs now holds all isomorphisms within the molecule
         if not len(isomorphs) == 0:
             smi_dict = {}
             smi_to_can = isomorphs[0]
@@ -365,7 +413,9 @@ def int32_to_negative(int32):
     32 bit integer and returns the actual number.
     """
     dct = {}
-    if int32 == 4294967295:  # Special case in some structures (note, this is just a workaround)
+    if (
+        int32 == 4294967295
+    ):  # Special case in some structures (note, this is just a workaround)
         return -1
     for i in range(-1000, -1):
         dct[np.uint32(i)] = i
@@ -378,7 +428,7 @@ def int32_to_negative(int32):
 def read_pdb(pdbfname, as_string=False):
     """Reads a given PDB file and returns a Pybel Molecule."""
     pybel.ob.obErrorLog.StopLogging()  # Suppress all OpenBabel warnings
-    if os.name != 'nt':  # Resource module not available for Windows
+    if os.name != "nt":  # Resource module not available for Windows
         maxsize = resource.getrlimit(resource.RLIMIT_STACK)[-1]
         resource.setrlimit(resource.RLIMIT_STACK, (min(2 ** 28, maxsize), maxsize))
     sys.setrecursionlimit(10 ** 5)  # increase Python recursion limit
@@ -387,48 +437,50 @@ def read_pdb(pdbfname, as_string=False):
 
 def read(fil):
     """Returns a file handler and detects gzipped files."""
-    if os.path.splitext(fil)[-1] == '.gz':
-        return gzip.open(fil, 'rb')
-    elif os.path.splitext(fil)[-1] == '.zip':
-        zf = zipfile.ZipFile(fil, 'r')
+    if os.path.splitext(fil)[-1] == ".gz":
+        return gzip.open(fil, "rb")
+    elif os.path.splitext(fil)[-1] == ".zip":
+        zf = zipfile.ZipFile(fil, "r")
         return zf.open(zf.infolist()[0].filename)
     else:
-        return open(fil, 'r')
+        return open(fil, "r")
 
 
 def readmol(path, as_string=False):
     """Reads the given molecule file and returns the corresponding Pybel molecule as well as the input file type.
     In contrast to the standard Pybel implementation, the file is closed properly."""
-    supported_formats = ['pdb']
+    supported_formats = ["pdb"]
     # Fix for Windows-generated files: Remove carriage return characters
     if "\r" in path and as_string:
-        path = path.replace('\r', '')
+        path = path.replace("\r", "")
 
     for sformat in supported_formats:
         obc = pybel.ob.OBConversion()
         obc.SetInFormat(sformat)
-        logger.debug(f'detected {sformat} as format, trying to read file with OpenBabel')
+        logger.debug(
+            f"detected {sformat} as format, trying to read file with OpenBabel"
+        )
 
         # Read molecules with single bond information
         if as_string:
             try:
                 mymol = pybel.readstring(sformat, path)
             except IOError:
-                logger.error('no valid file format provided')
+                logger.error("no valid file format provided")
                 sys.exit(1)
         else:
             read_file = pybel.readfile(format=sformat, filename=path, opt={"s": None})
             try:
                 mymol = next(read_file)
             except StopIteration:
-                logger.error('file contains no valid molecules')
+                logger.error("file contains no valid molecules")
                 sys.exit(1)
 
-        logger.debug('molecule successfully read')
+        logger.debug("molecule successfully read")
 
         # Assign multiple bonds
         mymol.OBMol.PerceiveBondOrders()
         return mymol, sformat
 
-    logger.error('no valid file format provided')
+    logger.error("no valid file format provided")
     sys.exit(1)

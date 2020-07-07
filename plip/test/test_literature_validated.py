@@ -21,10 +21,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference: Chakrabarti et al. Geometry of nonbonded interactions involving planar groups in proteins. (2007)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1eve.pdb')
-        bsid = 'E20:A:2001'
+        tmpmol.load_pdb("./pdb/1eve.pdb")
+        bsid = "E20:A:2001"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Aromatic stacking with Trp84 and Trp279
@@ -39,10 +39,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference: Chakrabarti et al. Geometry of nonbonded interactions involving planar groups in proteins. (2007)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1h2t.pdb')
-        bsid = 'GDP:Z:1151'
+        tmpmol.load_pdb("./pdb/1h2t.pdb")
+        bsid = "GDP:Z:1151"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Sandwiched pi-stacking involving Tyr20 and Tyr43
@@ -60,10 +60,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference: Betzi et al. Discovery of a potential allosteric ligand binding site in CDK2 (2012)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/3pxf.pdb')
-        bsids = ['2AN:A:305', '2AN:A:304']
+        tmpmol.load_pdb("./pdb/3pxf.pdb")
+        bsids = ["2AN:A:305", "2AN:A:304"]
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) in bsids:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) in bsids:
                 tmpmol.characterize_complex(ligand)
 
         s = tmpmol.interaction_sets[bsids[0]]  # 2AN:A:305
@@ -91,10 +91,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         from Sinorhizobium meliloti in the liganded and unliganded-closed states. (2008)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/2reg.pdb')
-        bsid = 'CHT:A:1'
+        tmpmol.load_pdb("./pdb/2reg.pdb")
+        bsid = "CHT:A:1"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Cation-pi interactions with Trp43, Trp90, Trp205, and Tyr119
@@ -109,10 +109,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference: Bird et al. Crystal structures of Varicella Zoster Virus Thyrimidine Kinase. (2003)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1osn.pdb')
-        bsid = 'BVP:A:500'
+        tmpmol.load_pdb("./pdb/1osn.pdb")
+        bsid = "BVP:A:500"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Sandwiched pi-stacking involving Phe93 and Phe139
@@ -128,10 +128,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         has implications for antiviral therapy (2008)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/2w0s.pdb')
-        bsid = 'BVP:B:1207'  # Complex of BVDU with Magnesium Cofactor
+        tmpmol.load_pdb("./pdb/2w0s.pdb")
+        bsid = "BVP:B:1207"  # Complex of BVDU with Magnesium Cofactor
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonding of Tyr101 and Arg72
@@ -152,10 +152,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference: Li et al. Identification of a potent and selective non-basic cathepsin K inhibitor. (2006)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1vsn.pdb')
-        bsid = 'NFT:A:283'
+        tmpmol.load_pdb("./pdb/1vsn.pdb")
+        bsid = "NFT:A:283"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonding to Gly66
@@ -167,10 +167,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference: De Moliner et al. Alternative binding modes of an inhibitor to two different kinases. (2003)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1p5e.pdb')
-        bsid = 'TBS:A:301'
+        tmpmol.load_pdb("./pdb/1p5e.pdb")
+        bsid = "TBS:A:301"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Halogen Bonding of Ile10 and Leu83
@@ -183,10 +183,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         acetylcholinesterase.. (1993)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1acj.pdb')
-        bsid = 'THA:A:999'
+        tmpmol.load_pdb("./pdb/1acj.pdb")
+        bsid = "THA:A:999"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # pi-stacking interaction with Phe330 and Trp84
@@ -199,10 +199,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         glutamicum CgmR in Complex with Inducers and with an Operator. (2010)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/2zoz.pdb')
-        bsid = 'ET:B:184'
+        tmpmol.load_pdb("./pdb/2zoz.pdb")
+        bsid = "ET:B:184"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # pi-stacking interaction with Trp63 and Phe147
@@ -219,10 +219,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         RNA editing ligase 1. (2004)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1xdn.pdb')
-        bsid = 'ATP:A:501'
+        tmpmol.load_pdb("./pdb/1xdn.pdb")
+        bsid = "ATP:A:501"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Arg111, Ile61 (backbone), Asn92, Val88, Lys87 and Glu86#
@@ -241,10 +241,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference: Peisach et al. Interaction of a Peptidomimetic Aminimide Inhibitor with Elastase. (1995)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1bma.pdb')
-        bsid = '0QH:A:256'
+        tmpmol.load_pdb("./pdb/1bma.pdb")
+        bsid = "0QH:A:256"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to val224 and Gln200
@@ -265,14 +265,16 @@ class LiteratureValidatedTest(unittest.TestCase):
         and Their Prodrugs As Antimalarial Agents (2004)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/4rao.pdb')
-        bsid = '3L7:B:301'
+        tmpmol.load_pdb("./pdb/4rao.pdb")
+        bsid = "3L7:B:301"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Val187, Lys165, Thr141, Lys140, Gly139, Thr138, Asp137
-        hbonds = {hbond.resnr for hbond in s.hbonds_pdon}  # res nr 100, 68, 69 and 199 in alternative conformation,
+        hbonds = {
+            hbond.resnr for hbond in s.hbonds_pdon
+        }  # res nr 100, 68, 69 and 199 in alternative conformation,
         self.assertTrue({137, 138, 139, 140, 141, 165, 187}.issubset(hbonds))
         # Water bridges to Asp137, Thr141, Met142, Arg199 and Gly139
         # res nr 199 and 142 in alternative conformation
@@ -286,10 +288,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference:  Bhattacharya et al. Structural basis of HIV-1 capsid recognition by PF74 and CPSF6(2014)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/4qnb.pdb')
-        bsid = '1B0:A:301'
+        tmpmol.load_pdb("./pdb/4qnb.pdb")
+        bsid = "1B0:A:301"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Asn57 and Lys70
@@ -304,10 +306,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference:  Zaware et al. Structural basis of HIV-1 capsid recognition by PF74 and CPSF6(2014)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/4kya.pdb')
-        bsid = '1UG:E:702'
+        tmpmol.load_pdb("./pdb/4kya.pdb")
+        bsid = "1UG:E:702"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Ala609
@@ -329,10 +331,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         implications for ligand binding and specificity(2002)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1n7g.pdb')
-        bsid = 'NDP:A:701'
+        tmpmol.load_pdb("./pdb/1n7g.pdb")
+        bsid = "NDP:A:701"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Thr37, Gly38, Gln39, Asp40,  Arg60, Leu92, Asp91, Ser63, Leu92, Ala115, Ser117,
@@ -340,7 +342,9 @@ class LiteratureValidatedTest(unittest.TestCase):
         # Publication give the Prediction for Asp91 as hydrogen bond, when this contains two acceptor atoms.
         hbonds = {hbond.resnr for hbond in s.hbonds_pdon}
         # #@todo Hbond to 128 not detected
-        self.assertTrue({37, 38, 39, 40, 92, 63, 92, 115, 117, 185, 189, 215, 220}.issubset(hbonds))
+        self.assertTrue(
+            {37, 38, 39, 40, 92, 63, 92, 115, 117, 185, 189, 215, 220}.issubset(hbonds)
+        )
         # Water bridges to Gly35, Thr37, Gly38, Asp40, Arg60, Arg61, Ser63, Asn66, Ser117, Tyr128, Lys189, Arg220
         waterbridges = {wb.resnr for wb in s.water_bridges}
         # Hydrogen bonds to 35, 37, 38, 40, 63, 117, 128, 189, 220 not detected due to prioritization
@@ -358,10 +362,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference:  Tsuhako et al. The design, synthesis, and biological evaluation of PIM kinase inhibitors.(2012)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/4alw.pdb')
-        bsid = 'HY7:A:1308'
+        tmpmol.load_pdb("./pdb/4alw.pdb")
+        bsid = "HY7:A:1308"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Asp186
@@ -377,10 +381,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         for TMAO.(2013)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/3o1h.pdb')
-        bsid = 'TMO:B:1'
+        tmpmol.load_pdb("./pdb/3o1h.pdb")
+        bsid = "TMO:B:1"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Trp45
@@ -396,10 +400,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference:  Shikha et al. Mechanism of mismatch recognition revealed by human MutSβ bound to unpaired DNA loops.(2012)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/3thy.pdb')
-        bsid = 'ADP:A:935'
+        tmpmol.load_pdb("./pdb/3thy.pdb")
+        bsid = "ADP:A:935"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Saltbridge to His295 and Lys675
@@ -414,10 +418,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference:  Ash et al. The structure of an N11A mutant of the G-protein domain of FeoB.(2011)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/3tah.pdb')
-        bsid = 'BGO:A:300'
+        tmpmol.load_pdb("./pdb/3tah.pdb")
+        bsid = "BGO:A:300"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Ala11, Lys14, Thr15, Ser16, Asp113, Met114, Ala143 and Asp113
@@ -434,10 +438,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         kinase CK2 inhibitors in clinical trials for the treatment of cancer (2011).
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/3r0t.pdb')
-        bsid = 'FU9:A:338'
+        tmpmol.load_pdb("./pdb/3r0t.pdb")
+        bsid = "FU9:A:338"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Val116
@@ -462,10 +466,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Redox Potentials of DesulfoVibrio Vulgaris Flavodoxin.(2002)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1aku.pdb')
-        bsid = 'FMN:A:150'
+        tmpmol.load_pdb("./pdb/1aku.pdb")
+        bsid = "FMN:A:150"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Thr59
@@ -488,10 +492,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         673, a potent inhibitor derived from dihydropyridophthalazinone.(2014)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/4pjt.pdb')
-        bsid = '2YQ:D:1104'
+        tmpmol.load_pdb("./pdb/4pjt.pdb")
+        bsid = "2YQ:D:1104"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Gly863
@@ -506,15 +510,15 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference:  Presnell et al. Oxyanion-Mediated Inhibition of Serine Proteases.(1998)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1bju.pdb')
-        bsid = 'GP6:A:910'
+        tmpmol.load_pdb("./pdb/1bju.pdb")
+        bsid = "GP6:A:910"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
-        #@todo Publication show hydrogen bond interactions for Gly219
+        # @todo Publication show hydrogen bond interactions for Gly219
         # Hydrogen bonds to Ser190, Ser195, Gly219 and Asp189
-        hbonds = {hbond.resnr for hbond in s.hbonds_pdon+s.hbonds_ldon}
+        hbonds = {hbond.resnr for hbond in s.hbonds_pdon + s.hbonds_ldon}
         self.assertTrue({189, 190, 195}.issubset(hbonds))
         # Water bridges to Ser190 and Val227
         # Water bridge to 190 not detected due to prioritization
@@ -532,10 +536,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Reference:  Wilcken et al. Halogen-Enriched Fragment Libraries as Leads for Drug Rescue of Mutant p53.(2012)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/4agl.pdb')
-        bsid = 'P84:A:400'
+        tmpmol.load_pdb("./pdb/4agl.pdb")
+        bsid = "P84:A:400"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Water bridges to Val147
@@ -554,10 +558,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         Pathway.(2007)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/2efj.pdb')
-        bsid = '37T:A:502'
+        tmpmol.load_pdb("./pdb/2efj.pdb")
+        bsid = "37T:A:502"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bond to Ser237
@@ -573,10 +577,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         inhibitor.(2006)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/2iuz.pdb')
-        bsid = 'D1H:A:1440'
+        tmpmol.load_pdb("./pdb/2iuz.pdb")
+        bsid = "D1H:A:1440"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Trp137
@@ -597,10 +601,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         phosphodiesterase type 5 (PDE5) inhibitors.(2011)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/3shy.pdb')
-        bsid = '5FO:A:1'
+        tmpmol.load_pdb("./pdb/3shy.pdb")
+        bsid = "5FO:A:1"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Gln817
@@ -622,10 +626,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         substrate recognition site constructed by rearrangement of hydrogen bond network..(1998)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1ay8.pdb')
-        bsid = 'PLP:A:413'
+        tmpmol.load_pdb("./pdb/1ay8.pdb")
+        bsid = "PLP:A:413"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds to Gly108, Thr109, Asn194 and Ser257
@@ -644,10 +648,10 @@ class LiteratureValidatedTest(unittest.TestCase):
         evolutionary path selected by the Lewis epitope..(2014)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/4rdl.pdb')
-        bsid = 'FUC:A:601'
+        tmpmol.load_pdb("./pdb/4rdl.pdb")
+        bsid = "FUC:A:601"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]  # Instead of FUC-A-604 (sugar representative)
         # Water bridges to Asn395
@@ -670,18 +674,22 @@ class LiteratureValidatedTest(unittest.TestCase):
         with CGP 53820, a novel pseudosymmetric inhibitor (1995)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1hii.pdb')
-        bsid = 'C20:B:101'
+        tmpmol.load_pdb("./pdb/1hii.pdb")
+        bsid = "C20:B:101"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Water bridges
-        waterbridges = {str(wb.resnr)+wb.reschain for wb in s.water_bridges}
-        self.assertTrue({'50A', '50B'}.issubset(waterbridges))  # Bridging Ile-B50 and Ile-A50 with ligand
+        waterbridges = {str(wb.resnr) + wb.reschain for wb in s.water_bridges}
+        self.assertTrue(
+            {"50A", "50B"}.issubset(waterbridges)
+        )  # Bridging Ile-B50 and Ile-A50 with ligand
         # Hydrogen bonds
-        hbonds = {str(hbond.resnr)+hbond.reschain for hbond in s.hbonds_pdon+s.hbonds_ldon}
-        self.assertTrue({'27A', '27B', '29A', '48A', '48B'}.issubset(hbonds))
+        hbonds = {
+            str(hbond.resnr) + hbond.reschain for hbond in s.hbonds_pdon + s.hbonds_ldon
+        }
+        self.assertTrue({"27A", "27B", "29A", "48A", "48B"}.issubset(hbonds))
         # #@todo Publication mentions additional possible hydrogen bond with Asp28B
         # Hydrogen bonds with Asp-A25 are reported as a salt bridge as both partners have (potential) charges
 
@@ -691,22 +699,28 @@ class LiteratureValidatedTest(unittest.TestCase):
          Diol Inhibitors of HIV-1 Protease (1994)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1hvi.pdb')
-        bsid = 'A77:A:800'
+        tmpmol.load_pdb("./pdb/1hvi.pdb")
+        bsid = "A77:A:800"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Water bridges
-        waterbridges = {str(wb.resnr)+wb.reschain for wb in s.water_bridges}
+        waterbridges = {str(wb.resnr) + wb.reschain for wb in s.water_bridges}
         # #@todo Water bridge with 50B not detected
-        self.assertTrue({'50A'}.issubset(waterbridges))  # Bridging Ile-B50 and Ile-A50 with ligand
+        self.assertTrue(
+            {"50A"}.issubset(waterbridges)
+        )  # Bridging Ile-B50 and Ile-A50 with ligand
         # pi-cation Interactions
         picat = {pication.resnr for pication in s.pication_laro}
-        self.assertEqual({8}, picat)  # Described as weakly polar contact/stacking in paper
+        self.assertEqual(
+            {8}, picat
+        )  # Described as weakly polar contact/stacking in paper
         # Hydrogen bonds
-        hbonds = {str(hbond.resnr)+hbond.reschain for hbond in s.hbonds_pdon+s.hbonds_ldon}
-        self.assertTrue({'25B', '27A', '27B', '48A', '48B'}.issubset(hbonds))
+        hbonds = {
+            str(hbond.resnr) + hbond.reschain for hbond in s.hbonds_pdon + s.hbonds_ldon
+        }
+        self.assertTrue({"25B", "27A", "27B", "48A", "48B"}.issubset(hbonds))
         # #@todo Paper describes additional hydrogen bond with Asp25A
 
     def test_3o7g(self):
@@ -715,16 +729,18 @@ class LiteratureValidatedTest(unittest.TestCase):
         melanoma (2010)
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/3og7.pdb')
-        bsid = '032:A:1'
+        tmpmol.load_pdb("./pdb/3og7.pdb")
+        bsid = "032:A:1"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrogen bonds
-        hbonds = {str(hbond.resnr)+hbond.reschain for hbond in s.hbonds_pdon+s.hbonds_ldon}
+        hbonds = {
+            str(hbond.resnr) + hbond.reschain for hbond in s.hbonds_pdon + s.hbonds_ldon
+        }
         # Additional hydrogen bond to residue 530A reported
-        self.assertTrue({'594A'}.issubset(hbonds))
+        self.assertTrue({"594A"}.issubset(hbonds))
 
     def test_1hpx(self):
         """
@@ -735,20 +751,22 @@ class LiteratureValidatedTest(unittest.TestCase):
         For residues in the B chain, the offset is -100 (e.g. Ile 50B in the PDB structure is Ile 150 in the paper).
         """
         tmpmol = PDBComplex()
-        tmpmol.load_pdb('./pdb/1hpx.pdb')
-        bsid = 'KNI:B:900'
+        tmpmol.load_pdb("./pdb/1hpx.pdb")
+        bsid = "KNI:B:900"
         for ligand in tmpmol.ligands:
-            if ':'.join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
+            if ":".join([ligand.hetid, ligand.chain, str(ligand.position)]) == bsid:
                 tmpmol.characterize_complex(ligand)
         s = tmpmol.interaction_sets[bsid]
         # Hydrophobic contacts to Val82, Ile84, Ile150 as part of flap (S1, S1' sites)
-        hydroph = {str(hyd.resnr)+hyd.reschain for hyd in s.all_hydrophobic_contacts}
-        self.assertTrue({'82A', '84A', '50B'}.issubset(hydroph))
+        hydroph = {str(hyd.resnr) + hyd.reschain for hyd in s.all_hydrophobic_contacts}
+        self.assertTrue({"82A", "84A", "50B"}.issubset(hydroph))
         # Hydrogen bonds
-        hbonds = {str(hbond.resnr)+hbond.reschain for hbond in s.hbonds_ldon+s.hbonds_pdon}
+        hbonds = {
+            str(hbond.resnr) + hbond.reschain for hbond in s.hbonds_ldon + s.hbonds_pdon
+        }
         # Additional hbond to 25B not detected (low angle?)
-        self.assertTrue({'29B', '48B', '27B', '25A'}.issubset(hbonds))
+        self.assertTrue({"29B", "48B", "27B", "25A"}.issubset(hbonds))
         # Water bridges
-        waterbridges = {str(wb.resnr)+wb.reschain for wb in s.water_bridges}
+        waterbridges = {str(wb.resnr) + wb.reschain for wb in s.water_bridges}
         # Waterbridge with Gly27 is detected instead of Ala28/Asp29
-        self.assertTrue({'50A', '50B', '29A'}.issubset(waterbridges))
+        self.assertTrue({"50A", "50B", "29A"}.issubset(waterbridges))

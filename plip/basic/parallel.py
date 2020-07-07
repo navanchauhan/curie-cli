@@ -34,9 +34,9 @@ def parallel_fn(f):
 
     def simple_parallel(func, sequence, **args):
         """ f takes an element of sequence as input and the keyword args in **args"""
-        if 'processes' in args:
-            processes = args.get('processes')
-            del args['processes']
+        if "processes" in args:
+            processes = args.get("processes")
+            del args["processes"]
         else:
             processes = multiprocessing.cpu_count()
 
