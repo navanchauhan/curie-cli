@@ -18,7 +18,8 @@ RUN apt-get update && apt-get install -y \
     openbabel \
     autodock-vina \
     pandoc \
-    texlive-xetex
+    texlive-xetex \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # copy PLIP source code
 WORKDIR /src
