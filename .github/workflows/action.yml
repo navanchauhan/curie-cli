@@ -1,21 +1,60 @@
-name: Curie-CLI Build
+name: buildx
 
 on:
   push
 
 jobs:
-  docker-hub:
-    name: Deployment
+  buildx:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Deploy Step
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          #repository: navanchauhan/curie-cli
-          #tag_with_ref: true
-          tags: latest
-          #image: navanchauhan/curie-cli
-          registry: docker.io
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Prepare
+        id: prepare
+        run: |
+          DOCKER_IMAGE=navanchauhan/curie-cli
+          DOCKER_PLATFORMS=linux/amd64,linux/arm64]
+          VERSION=edge
+
+          TAGS="--tag ${DOCKER_IMAGE}:${VERSION}"
+          TAGS="$TAGS --tag ${DOCKER_IMAGE}:latest"
+
+          echo ::set-output name=docker_image::${DOCKER_IMAGE}
+          echo ::set-output name=version::${VERSION}
+          echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \
+            --build-arg VERSION=${VERSION} \
+            --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+            --build-arg VCS_REF=${GITHUB_SHA::8} \
+            ${TAGS} --file ./Dockerfile
+      -
+        name: Set up Docker Buildx
+        uses: crazy-max/ghaction-docker-buildx@v3
+      -
+        name: Docker Buildx (build)
+        run: |
+          docker buildx build --output "type=image,push=false" ${{ steps.prepare.outputs.buildx_args }}
+      -
+        name: Docker Login
+        if: success() && github.event_name != 'pull_request'
+        env:
+          DOCKER_USERNAME: ${{ DOCKER_HUB_USER }}
+          DOCKER_PASSWORD: ${{ DOCKER_HUB_TOKEN }}
+        run: |
+          echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+      -
+        name: Docker Buildx (push)
+        if: success() && github.event_name != 'pull_request'
+        run: |
+          docker buildx build --output "type=image,push=true" ${{ steps.prepare.outputs.buildx_args }}
+      -
+        name: Docker Check Manifest
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          docker run --rm mplatform/mquery ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}
+      -
+        name: Clear
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          rm -f ${HOME}/.docker/config.json
