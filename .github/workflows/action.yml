@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Prepare
+      - id: prepare
         run: |
           DOCKER_IMAGE=navanchauhan/curie-cli
           DOCKER_PLATFORMS=linux/amd64,linux/arm64
