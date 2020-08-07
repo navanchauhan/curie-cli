@@ -87,6 +87,8 @@ session.start()
 cmd = session.cmd
 
 loadMol(protein,m1)
+cmd.remove("resn hoh") # remove water
+cmd.color("blue","hetatm") # color heteroatoms
 loadMol(ligand,m2)
 changeColor(m1,"grey60")
 changeColor(m2,ligandColor)
