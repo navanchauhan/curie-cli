@@ -45,13 +45,70 @@ for x in doc.report.bindingsite:
 
 name = doc.report.pdbid.cdata
 #print(("# " + (name.replace("_"," ")).replace("PROTEIN","")), end="\n\n")
+fallback = 0
 
 print("## Visualisation", end="\n\n")    
 print(f'![]({image})', end="\n\n")
 
-print("## Interactions", end="\n\n")
+natural_ligands = []
+showNaturalLigands = True
 
-fallback = 0
+try:
+    for x in range(len(doc.report.bindingsite)):
+        if doc.report.bindingsite[x]['has_interactions'] == 'True' and x != indexForUNL:
+            natural_ligands.append(x)
+except:
+    fallback==1
+
+if natural_ligands == []:
+    showNaturalLigands == False
+
+for ligand in natural_ligands:
+    print("### Natural Ligand " + str(x),end="\n\n")
+    if doc.report.bindingsite[ligand].interactions.hydrophobic_interactions.cdata == '':
+        print("No Hydrophobic Interactions Found",end="\n\n")
+    else:
+        print("#### Hydrophobic Interactions",end="\n\n")
+        tableBody = []
+        tableHeaders = ['No.','Res.','AA','Dist','Ligand Atom','Proton Atom']
+        i = 1
+        for x in doc.report.bindingsite[ligand].interactions.hydrophobic_interactions.hydrophobic_interaction:
+            l = []
+            l.append(i)
+            l.append(x.resnr.cdata)
+            l.append(x.restype.cdata)
+            l.append(x.dist.cdata)
+            l.append(x.ligcarbonidx.cdata)
+            l.append(x.protcarbonidx.cdata)
+            i += 1
+            tableBody.append(l)
+        print(tabulate(tableBody, headers=tableHeaders), end="\n\n")
+    if doc.report.bindingsite[ligand].interactions.hydrogen_bonds.cdata == '':
+        print("No Hydrogen Bonds Found", end="\n\n")
+    else:
+        print("## Hydrogen Bonds",end="\n\n")
+        tableBody = []
+        tableHeaders = ['No.','Res.','AA','Dist H-A','Dist D-A','Don Angle','Protisdon?','Sidechain?','D. Atom','A. Atom']
+        i = 1
+        for x in doc.report.bindingsite[ligand].interactions.hydrogen_bonds.hydrogen_bond:
+            l = []
+            l.append(i)
+            l.append(x.resnr.cdata)
+            l.append(x.restype.cdata)
+            l.append(x.dist_h_a.cdata)
+            l.append(x.dist_d_a.cdata)
+            l.append(x.don_angle.cdata)
+            l.append(x.protisdon.cdata)
+            l.append(x.sidechain.cdata)
+            l.append((x.donoridx.cdata + "[" + x.donortype.cdata + "]"))
+            l.append((x.acceptoridx.cdata + "[" + x.acceptortype.cdata + "]"))
+            i += 1
+            tableBody.append(l)
+            #print(i, x.resnr.cdata, x.restype.cdata, x.dist_h_a.cdata, x.dist_d_a.cdata, x.don_angle.cdata, x.protisdon.cdata, x.sidechain.cdata, (x.donoridx.cdata + "[" + x.donortype.cdata + "]"), (x.acceptoridx.cdata + "[" + x.acceptortype.cdata + "]"))
+        print(tabulate(tableBody, headers=tableHeaders), end="\n\n")
+
+print("## Ligand Interactions", end="\n\n")
+
 try:
     if doc.report.bindingsite[indexForUNL].interactions.hydrophobic_interactions.cdata == '':
         print("No Hydrophobic Interactions Found", end="\n\n")
