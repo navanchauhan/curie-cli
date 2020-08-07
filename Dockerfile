@@ -34,9 +34,9 @@ RUN ./run_all_tests.sh
 #WORKDIR /
 
 # scripts
-WORKDIR /src
-COPY scripts/ scripts/
-RUN chmod +x /src/scripts/main.sh
+#WORKDIR /src
+#COPY scripts/ scripts/
+#RUN chmod +x /src/scripts/main.sh
 RUN python3 -m pip install untangle tabulate
 
 
