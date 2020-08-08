@@ -77,13 +77,14 @@ for ligand in natural_ligands:
         for x in doc.report.bindingsite[
             ligand
         ].interactions.hydrophobic_interactions.hydrophobic_interaction:
-            l = []
-            l.append(i)
-            l.append(x.resnr.cdata)
-            l.append(x.restype.cdata)
-            l.append(x.dist.cdata)
-            l.append(x.ligcarbonidx.cdata)
-            l.append(x.protcarbonidx.cdata)
+            l = [
+                i,
+                x.resnr.cdata,
+                x.restype.cdata,
+                x.dist.cdata,
+                x.ligcarbonidx.cdata,
+                x.protcarbonidx.cdata,
+            ]
             i += 1
             tableBody.append(l)
         print(tabulate(tableBody, headers=tableHeaders), end="\n\n")
@@ -108,15 +109,16 @@ for ligand in natural_ligands:
         for x in doc.report.bindingsite[
             ligand
         ].interactions.hydrogen_bonds.hydrogen_bond:
-            l = []
-            l.append(i)
-            l.append(x.resnr.cdata)
-            l.append(x.restype.cdata)
-            l.append(x.dist_h_a.cdata)
-            l.append(x.dist_d_a.cdata)
-            l.append(x.don_angle.cdata)
-            l.append(x.protisdon.cdata)
-            l.append(x.sidechain.cdata)
+            l = [
+                i,
+                x.resnr.cdata,
+                x.restype.cdata,
+                x.dist_h_a.cdata,
+                x.dist_d_a.cdata,
+                x.don_angle.cdata,
+                x.protisdon.cdata,
+                x.sidechain.cdata,
+            ]
             l.append((x.donoridx.cdata + "[" + x.donortype.cdata + "]"))
             l.append((x.acceptoridx.cdata + "[" + x.acceptortype.cdata + "]"))
             i += 1
@@ -237,13 +239,14 @@ if fallback == 0:
         for x in doc.report.bindingsite[
             indexForUNL
         ].interactions.hydrophobic_interactions.hydrophobic_interaction:
-            l = []
-            l.append(i)
-            l.append(x.resnr.cdata)
-            l.append(x.restype.cdata)
-            l.append(x.dist.cdata)
-            l.append(x.ligcarbonidx.cdata)
-            l.append(x.protcarbonidx.cdata)
+            l = [
+                i,
+                x.resnr.cdata,
+                x.restype.cdata,
+                x.dist.cdata,
+                x.ligcarbonidx.cdata,
+                x.protcarbonidx.cdata,
+            ]
             i += 1
             tableBody.append(l)
         print(tabulate(tableBody, headers=tableHeaders), end="\n\n")
@@ -267,15 +270,16 @@ if fallback == 0:
         for x in doc.report.bindingsite[
             indexForUNL
         ].interactions.hydrogen_bonds.hydrogen_bond:
-            l = []
-            l.append(i)
-            l.append(x.resnr.cdata)
-            l.append(x.restype.cdata)
-            l.append(x.dist_h_a.cdata)
-            l.append(x.dist_d_a.cdata)
-            l.append(x.don_angle.cdata)
-            l.append(x.protisdon.cdata)
-            l.append(x.sidechain.cdata)
+            l = [
+                i,
+                x.resnr.cdata,
+                x.restype.cdata,
+                x.dist_h_a.cdata,
+                x.dist_d_a.cdata,
+                x.don_angle.cdata,
+                x.protisdon.cdata,
+                x.sidechain.cdata,
+            ]
             l.append((x.donoridx.cdata + "[" + x.donortype.cdata + "]"))
             l.append((x.acceptoridx.cdata + "[" + x.acceptortype.cdata + "]"))
             i += 1
@@ -299,13 +303,14 @@ if fallback == 0:
         for x in doc.report.bindingsite[
             indexForUNL
         ].interactions.salt_bridges.salt_bridge:
-            l = []
-            l.append(i)
-            l.append(x.resnr.cdata)
-            l.append(x.restype.cdata)
-            l.append(x.dist.cdata)
-            l.append(x.protispos.cdata)
-            l.append(x.lig_group.cdata)
+            l = [
+                i,
+                x.resnr.cdata,
+                x.restype.cdata,
+                x.dist.cdata,
+                x.protispos.cdata,
+                x.lig_group.cdata,
+            ]
             atoms = []
             for y in x.lig_idx_list.idx:
                 atoms.append(y.cdata)
@@ -322,13 +327,14 @@ if fallback == 0:
         for x in doc.report.bindingsite[
             indexForUNL
         ].interactions.pi_cation_interactions.pi_cation_interaction:
-            l = []
-            l.append(i)
-            l.append(x.resnr.cdata)
-            l.append(x.restype.cdata)
-            l.append(x.dist.cdata)
-            l.append(x.offset.cdata)
-            l.append(x.protcharged.cdata)
+            l = [
+                i,
+                x.resnr.cdata,
+                x.restype.cdata,
+                x.dist.cdata,
+                x.offset.cdata,
+                x.protcharged.cdata,
+            ]
             atoms = []
             for y in x.lig_idx_list.idx:
                 atoms.append(y.cdata)
@@ -347,13 +353,14 @@ elif fallback == 1:
         ) in (
             doc.report.bindingsite.interactions.hydrophobic_interactions.hydrophobic_interaction
         ):
-            l = []
-            l.append(i)
-            l.append(x.resnr.cdata)
-            l.append(x.restype.cdata)
-            l.append(x.dist.cdata)
-            l.append(x.ligcarbonidx.cdata)
-            l.append(x.protcarbonidx.cdata)
+            l = [
+                i,
+                x.resnr.cdata,
+                x.restype.cdata,
+                x.dist.cdata,
+                x.ligcarbonidx.cdata,
+                x.protcarbonidx.cdata,
+            ]
             i += 1
             tableBody.append(l)
         print(tabulate(tableBody, headers=tableHeaders), end="\n\n")
@@ -375,15 +382,16 @@ elif fallback == 1:
         ]
         i = 1
         for x in doc.report.bindingsite.interactions.hydrogen_bonds.hydrogen_bond:
-            l = []
-            l.append(i)
-            l.append(x.resnr.cdata)
-            l.append(x.restype.cdata)
-            l.append(x.dist_h_a.cdata)
-            l.append(x.dist_d_a.cdata)
-            l.append(x.don_angle.cdata)
-            l.append(x.protisdon.cdata)
-            l.append(x.sidechain.cdata)
+            l = [
+                i,
+                x.resnr.cdata,
+                x.restype.cdata,
+                x.dist_h_a.cdata,
+                x.dist_d_a.cdata,
+                x.don_angle.cdata,
+                x.protisdon.cdata,
+                x.sidechain.cdata,
+            ]
             l.append((x.donoridx.cdata + "[" + x.donortype.cdata + "]"))
             l.append((x.acceptoridx.cdata + "[" + x.acceptortype.cdata + "]"))
             i += 1
@@ -405,13 +413,14 @@ elif fallback == 1:
         ]
         i = 1
         for x in doc.report.bindingsite.interactions.salt_bridges.salt_bridge:
-            l = []
-            l.append(i)
-            l.append(x.resnr.cdata)
-            l.append(x.restype.cdata)
-            l.append(x.dist.cdata)
-            l.append(x.protispos.cdata)
-            l.append(x.lig_group.cdata)
+            l = [
+                i,
+                x.resnr.cdata,
+                x.restype.cdata,
+                x.dist.cdata,
+                x.protispos.cdata,
+                x.lig_group.cdata,
+            ]
             atoms = []
             for y in x.lig_idx_list.idx:
                 atoms.append(y.cdata)
@@ -430,13 +439,14 @@ elif fallback == 1:
         ) in (
             doc.report.bindingsite.interactions.pi_cation_interactions.pi_cation_interaction
         ):
-            l = []
-            l.append(i)
-            l.append(x.resnr.cdata)
-            l.append(x.restype.cdata)
-            l.append(x.dist.cdata)
-            l.append(x.offset.cdata)
-            l.append(x.protcharged.cdata)
+            l = [
+                i,
+                x.resnr.cdata,
+                x.restype.cdata,
+                x.dist.cdata,
+                x.offset.cdata,
+                x.protcharged.cdata,
+            ]
             atoms = []
             for y in x.lig_idx_list.idx:
                 atoms.append(y.cdata)
