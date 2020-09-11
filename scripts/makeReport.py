@@ -454,5 +454,3 @@ elif fallback == 1:
             i += 1
             tableBody.append(l)
         print(tabulate(tableBody, headers=tableHeaders), end="\n\n")
-
-
