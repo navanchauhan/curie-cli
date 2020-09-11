@@ -455,9 +455,4 @@ elif fallback == 1:
             tableBody.append(l)
         print(tabulate(tableBody, headers=tableHeaders), end="\n\n")
 
-print("## Figures", end="\n\n")
 
-print(f"![](output-back.png)", end="\n\n")
-print(f"![](output-front.png)", end="\n\n")
-print(f"![](closeup-back.png)", end="\n\n")
-print(f"![](closeup-front.png)", end="\n\n")
