@@ -66,7 +66,7 @@ if natural_ligands == []:
     showNaturalLigands == False
 
 for ligand in natural_ligands:
-    print("### Natural Ligand " + str(x), end="\n\n")
+    print("### Natural Ligand " + str(ligand+1), end="\n\n")
     if doc.report.bindingsite[ligand].interactions.hydrophobic_interactions.cdata == "":
         print("No Hydrophobic Interactions Found", end="\n\n")
     else:
@@ -126,7 +126,7 @@ for ligand in natural_ligands:
             # print(i, x.resnr.cdata, x.restype.cdata, x.dist_h_a.cdata, x.dist_d_a.cdata, x.don_angle.cdata, x.protisdon.cdata, x.sidechain.cdata, (x.donoridx.cdata + "[" + x.donortype.cdata + "]"), (x.acceptoridx.cdata + "[" + x.acceptortype.cdata + "]"))
         print(tabulate(tableBody, headers=tableHeaders), end="\n\n")
 
-print("## Ligand Interactions", end="\n\n")
+print("## Docked Ligand Interactions", end="\n\n")
 
 try:
     if (
