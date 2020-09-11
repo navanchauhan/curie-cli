@@ -24,7 +24,10 @@ RUN apt-get update && apt-get install -y \
 
 # Download PLIP source code
 WORKDIR /src
-RUN git clone https://github.com/navanchauhan/plip /src/plip
+RUN git clone https://github.com/navanchauhan/plip /src/source
+RUN mv /src/source/plip /src/plip
+RUN rm -r /src/source
+
 
 # scripts
 WORKDIR /src
@@ -33,8 +36,6 @@ RUN chmod +x /src/scripts/main.sh
 RUN python3 -m pip install untangle tabulate
 
 # execute tests
-RUN ls /src
-RUN ls /src/plip
 WORKDIR /src/plip/test
 RUN chmod +x run_all_tests.sh
 RUN ./run_all_tests.sh
