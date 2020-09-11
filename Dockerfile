@@ -19,25 +19,24 @@ RUN apt-get update && apt-get install -y \
     autodock-vina \
     pandoc \
     texlive-xetex \
+    imagemagick \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# copy PLIP source code
+# Download PLIP source code
 WORKDIR /src
-COPY plip/ plip/
-RUN chmod +x plip/plipcmd.py
-ENV PYTHONPATH $PYTHONPATH:/src
-
-# execute tests
-#WORKDIR /src/plip/test
-#RUN chmod +x run_all_tests.sh
-#RUN ./run_all_tests.sh
-#WORKDIR /
+RUN git clone https://github.com/navanchauhan/plip /src/plip
 
 # scripts
 WORKDIR /src
 COPY scripts/ scripts/
 RUN chmod +x /src/scripts/main.sh
 RUN python3 -m pip install untangle tabulate
+
+# execute tests
+WORKDIR /src/plip/test
+RUN chmod +x run_all_tests.sh
+RUN ./run_all_tests.sh
+WORKDIR /src
 
 
 # set entry point to plipcmd.py
