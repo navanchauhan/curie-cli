@@ -25,10 +25,11 @@ RUN apt-get update && apt-get install -y \
 # Download PLIP source code
 WORKDIR /src
 RUN git clone https://github.com/navanchauhan/plip /src/source
+WORKDIR /src/source
+RUN python3 setup.py install
 RUN mv /src/source/plip /src/plip
 RUN rm -r /src/source
 WORKDIR /src/plip
-RUN python3 setup.py install
 
 
 # scripts
