@@ -33,6 +33,8 @@ RUN chmod +x /src/scripts/main.sh
 RUN python3 -m pip install untangle tabulate
 
 # execute tests
+RUN ls /src
+RUN ls /src/plip
 WORKDIR /src/plip/test
 RUN chmod +x run_all_tests.sh
 RUN ./run_all_tests.sh
