@@ -39,13 +39,13 @@ RUN chmod +x /src/scripts/main.sh
 RUN python3 -m pip install untangle tabulate
 
 # execute tests
-WORKDIR /src/plip/test
-RUN chmod +x run_all_tests.sh
-RUN ./run_all_tests.sh
+#WORKDIR /src/plip/test
+#RUN chmod +x run_all_tests.sh
+#RUN ./run_all_tests.sh
 
 # remove test files
-WORKDIR /src
-RUN rm -r /src/plip/test
+#WORKDIR /src
+#RUN rm -r /src/plip/test
 
 # set entry point to plipcmd.py
 #ENTRYPOINT  ["python3", "/src/plip/plipcmd.py"]

@@ -140,15 +140,20 @@ fi
 
 
 if [[ $interactions == "true" ]]; then
+    file=$(echo "$ligandPath" | cut -f 1 -d '.')
     python3 /src/scripts/get-best.py -p $proteinPath -l "$(echo $file)_out.pdbqt"
+    echo "Running PLIP"
     python3 /src/plip/plipcmd.py -f best.pdb -qpxy
+    echo "Getting Dock Score"
     python3 /src/scripts/get_dock_score.py -l "$(echo $file)_out.pdbqt" -p $proteinPath > report.md
+    echo "Making partial report"
     python3 /src/scripts/makeReport.py --input . >> report.md
     if [[ $visualisations == "true" ]]; then
-        file=$(echo "$ligandPath" | cut -f 1 -d '.')
+        echo "Creating Visualisations"
         python3 /src/scripts/quick-ligand-protein.py -p $proteinPath -l "$(echo $file)_out.pdbqt"
-        python3 /src/scripts/add-pictures.py
+        python3 /src/scripts/add-pictures.py >> report.md
     fi
+    echo "Generating PDF"
     pandoc -V geometry:margin=1in report.md --pdf-engine=xelatex -o $name.pdf
 fi
 

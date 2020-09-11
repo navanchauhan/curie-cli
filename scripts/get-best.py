@@ -28,6 +28,7 @@ if args.ligand == None:
     print("Error: Please specify ligand file")
     exit(1)
 
+print("Getting Best ligand from",args.protein,args.ligand)
 
 protein = args.protein
 ligand = args.ligand
