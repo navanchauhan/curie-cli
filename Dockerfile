@@ -27,6 +27,8 @@ WORKDIR /src
 RUN git clone https://github.com/navanchauhan/plip /src/source
 RUN mv /src/source/plip /src/plip
 RUN rm -r /src/source
+WORKDIR /src/plip
+RUN python3 setup.py install
 
 
 # scripts
