@@ -1,4 +1,4 @@
-FROM python:3-slim AS builder
+FROM python:3-slim-bullseye AS builder
 
 LABEL maintainer="Navan Chauhan <navanchauhan@gmail.com>" \
         org.label-schema.name="Curie Module" \
