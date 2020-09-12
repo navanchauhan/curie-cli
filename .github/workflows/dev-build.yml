@@ -1,0 +1,36 @@
+name: Curie-CLI Build
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  docker-hub:
+    name: Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare
+        id: prepare
+        run: |
+          DOCKER_IMAGE=navanchauhan/curie-cli
+          DOCKER_PLATFORMS=linux/amd64,linux/arm64
+          VERSION=dev
+          TAGS="--tag ${DOCKER_IMAGE}:${VERSION}"
+          echo ::set-output name=docker_image::${DOCKER_IMAGE}
+          echo ::set-output name=version::${VERSION}
+          echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \
+            --build-arg VERSION=${VERSION} \
+            --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+            --build-arg VCS_REF=${GITHUB_SHA::8} \
+            ${TAGS} --file ./Dockerfile ./
+      - name: Prepare Buildx
+        uses: crazy-max/ghaction-docker-buildx@v3
+      - name: Docker Login
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_TOKEN }}
+        run: echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+      - name: Docker Buildx (push)
+        run: docker buildx build --output "type=image,push=true" ${{ steps.prepare.outputs.buildx_args }}
