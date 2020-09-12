@@ -1,4 +1,4 @@
-FROM python:3-slim-bullseye AS builder
+FROM ubuntu:20.04 AS builder
 
 LABEL maintainer="Navan Chauhan <navanchauhan@gmail.com>" \
         org.label-schema.name="Curie Module" \
