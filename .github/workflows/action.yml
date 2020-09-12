@@ -1,7 +1,9 @@
 name: Curie-CLI Build
 
 on:
-  push
+  push:
+    branches: 
+      - master
 
 jobs:
   docker-hub:
